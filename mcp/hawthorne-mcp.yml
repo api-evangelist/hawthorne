@@ -1,0 +1,53 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://hawthorne.co/.well-known/ucp
+docs: https://hawthorne.co/llms.txt
+notes: >-
+  Live agent-commerce MCP endpoint exposed by the Hawthorne Shopify store via the
+  Universal Commerce Protocol (UCP, https://ucp.dev). The endpoint requires a UCP
+  agent-profile handshake; an unauthenticated tools/list returns
+  "UCP discovery failed / Missing profile uri". Tool names below are taken verbatim
+  from the store's published /llms.txt agent flow and the UCP capability set in the
+  /.well-known/ucp profile — not fabricated. Checkout completion requires explicit
+  human buyer approval; the endpoint is rate-limited per IP (back off on 429).
+server:
+  name: hawthorne-ucp-shopping
+  transport: http
+  protocol: mcp
+  url: https://hawthorne-lab.myshopify.com/api/ucp/mcp
+  ucp_version: '2026-04-08'
+  ucp_supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  service: dev.ucp.shopping
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+tools:
+- name: search_catalog
+  description: Find products matching the buyer's intent (UCP dev.ucp.shopping.catalog.search).
+  source: llms.txt agent flow
+- name: create_cart
+  description: Add desired items to a cart (UCP dev.ucp.shopping.cart).
+  source: llms.txt agent flow
+- name: create_checkout
+  description: Start the purchase flow (UCP dev.ucp.shopping.checkout).
+  source: llms.txt agent flow
+- name: update_checkout
+  description: Set shipping address and method (UCP dev.ucp.shopping.fulfillment).
+  source: llms.txt agent flow
+- name: complete_checkout
+  description: Finalize the purchase — buyer must approve payment.
+  source: llms.txt agent flow
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+payment_handlers:
+- com.google.pay
+- dev.shopify.card
+- dev.shopify.shop_pay

@@ -1,7 +1,29 @@
 aid: hawthorne
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hawthorne.png
 name: Hawthorne
-description: Hawthorne is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Hawthorne is an internet-first men's personal care and grooming brand founded in
+  2016 in New York City (a Techstars alum, later Series B). It sells personalized,
+  long-lasting fragrance and grooming products — cologne, deodorant, body wash, face
+  and hair care — tuned to a customer's body chemistry and lifestyle through an
+  onboarding quiz and a smart-subscription model built around its "Surround Scent"
+  technology. The direct-to-consumer storefront at hawthorne.co runs on Shopify and
+  exposes a modern agent-commerce surface: a published /llms.txt and /agents.md,
+  Shopify Customer Account OpenID Connect discovery, and a live Universal Commerce
+  Protocol (UCP) MCP endpoint so AI shopping agents can search the catalog, build a
+  cart, and complete a buyer-approved checkout.
 url: https://raw.githubusercontent.com/api-evangelist/hawthorne/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +33,39 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- E-Commerce
+- Retail
+- Consumer Goods
+- Personal Care
+- Grooming
+- Agentic Commerce
+- Shopify
+apis:
+- name: Hawthorne UCP Commerce (Shopify)
+  description: >-
+    Agent-facing Universal Commerce Protocol (UCP) shopping surface for the Hawthorne
+    Shopify store — catalog search/lookup, cart, checkout, fulfillment, discount and
+    order capabilities over an MCP endpoint, with buyer-approved payment handlers
+    (Shop Pay, Google Pay, card). Authenticated via the Shopify Customer Account API.
+  humanURL: https://hawthorne.co/
+  baseURL: https://hawthorne-lab.myshopify.com/api/ucp/mcp
+  tags:
+  - Agentic Commerce
+  - MCP
+  - UCP
+  - E-Commerce
+  properties:
+  - type: MCPServer
+    url: mcp/hawthorne-mcp.yml
+  - type: Authentication
+    url: authentication/hawthorne-authentication.yml
+  - type: OAuthScopes
+    url: scopes/hawthorne-scopes.yml
+  - type: Conventions
+    url: conventions/hawthorne-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +74,26 @@ maintainers:
 common:
 - type: Website
   url: https://hawthorne.co/
+- type: WellKnown
+  url: well-known/hawthorne-well-known.yml
+- type: LLMsTxt
+  url: llms/hawthorne-llms.txt
+- type: MCPServer
+  url: mcp/hawthorne-mcp.yml
+- type: Authentication
+  url: authentication/hawthorne-authentication.yml
+- type: OAuthScopes
+  url: scopes/hawthorne-scopes.yml
+- type: Conventions
+  url: conventions/hawthorne-conventions.yml
+- type: DomainSecurity
+  url: security/hawthorne-domain-security.yml
+- type: PrivacyPolicy
+  url: https://hawthorne.co/policies/privacy-policy
+- type: TermsOfService
+  url: https://hawthorne.co/policies/terms-of-service
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

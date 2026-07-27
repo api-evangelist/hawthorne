@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://hawthorne.co/.well-known/
+host: https://hawthorne.co
+notes: >-
+  hawthorne.co is a Shopify-hosted storefront. The OIDC/OAuth metadata is
+  Shopify's Customer Account API for this shop (issuer shopify.com/authentication/57105744010).
+  The UCP profile is the store's Universal Commerce Protocol (ucp.dev) discovery
+  document advertising an agent-facing MCP shopping endpoint.
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: hawthorne-openid-configuration.json
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: hawthorne-oauth-authorization-server.json
+- path: /.well-known/ucp
+  status: 200
+  file: hawthorne-ucp.json
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

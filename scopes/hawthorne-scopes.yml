@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: searched
+source: https://hawthorne.co/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+notes: >-
+  OAuth/OIDC scopes advertised by the store's Shopify Customer Account API
+  discovery document. These are Shopify platform scopes surfaced on the Hawthorne
+  shop host, not a bespoke Hawthorne scope registry. The customer-account-mcp-api
+  scope gates the store's agent-facing MCP commerce endpoint.
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  source: well-known/hawthorne-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://shopify.com/authentication/57105744010/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/57105744010/oauth/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; issue an ID token for the customer.
+  sources: [well-known/hawthorne-openid-configuration.json]
+- scope: email
+  description: Access the authenticated customer's email address.
+  sources: [well-known/hawthorne-openid-configuration.json]
+- scope: customer-account-api:full
+  description: Full access to the Shopify Customer Account API on behalf of the signed-in customer.
+  sources: [well-known/hawthorne-openid-configuration.json]
+- scope: customer-account-mcp-api:full
+  description: Full access to the customer-account MCP API surface (agent-driven commerce).
+  sources: [well-known/hawthorne-openid-configuration.json]
