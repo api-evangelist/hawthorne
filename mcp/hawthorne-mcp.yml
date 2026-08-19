@@ -3,14 +3,12 @@ method: searched
 status: published
 source: https://hawthorne.co/.well-known/ucp
 docs: https://hawthorne.co/llms.txt
-notes: >-
-  Live agent-commerce MCP endpoint exposed by the Hawthorne Shopify store via the
-  Universal Commerce Protocol (UCP, https://ucp.dev). The endpoint requires a UCP
-  agent-profile handshake; an unauthenticated tools/list returns
-  "UCP discovery failed / Missing profile uri". Tool names below are taken verbatim
-  from the store's published /llms.txt agent flow and the UCP capability set in the
-  /.well-known/ucp profile — not fabricated. Checkout completion requires explicit
-  human buyer approval; the endpoint is rate-limited per IP (back off on 429).
+notes: Live agent-commerce MCP endpoint exposed by the Hawthorne Shopify store via the Universal Commerce
+  Protocol (UCP, https://ucp.dev). The endpoint requires a UCP agent-profile handshake; an unauthenticated
+  tools/list returns "UCP discovery failed / Missing profile uri". Tool names below are taken verbatim
+  from the store's published /llms.txt agent flow and the UCP capability set in the /.well-known/ucp profile
+  — not fabricated. Checkout completion requires explicit human buyer approval; the endpoint is rate-limited
+  per IP (back off on 429).
 server:
   name: hawthorne-ucp-shopping
   transport: http
@@ -51,3 +49,11 @@ payment_handlers:
 - com.google.pay
 - dev.shopify.card
 - dev.shopify.shop_pay
+deployment:
+  mode: remote
+  endpoint: https://hawthorne-lab.myshopify.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
